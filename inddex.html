@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Calculadora IMC</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+        }
+
+        #container {
+            width: 300px;
+            margin: 50px auto;
+        }
+
+        label {
+            display: block;
+            margin-bottom: 8px;
+        }
+
+        input {
+            width: 100%;
+            padding: 8px;
+            margin-bottom: 16px;
+        }
+
+        button {
+            background-color: #4caf50;
+            color: white;
+            padding: 10px 15px;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+        }
+
+        #result {
+            margin-top: 20px;
+        }
+
+    </style>
+</head>
+<body>
+    <div id="container">
+        <h2>Calculadora IMC</h2>
+        <label for="weight">Peso (kg):</label>
+        <input type="number" id="weight" placeholder="Digite seu peso">
+
+        <label for="height">Altura (m):</label>
+        <input type="number" id="height" placeholder="Digite sua altura">
+
+        <button onclick="calculateBMI()">Calcular IMC</button>
+
+        <div id="result"></div>
+    </div>
+
+    <script>
+        function calculateBMI() {
+            var weight = document.getElementById('weight').value;
+            var height = document.getElementById('height').value;
+
+            if (weight > 0 && height > 0) {
+                var bmi = weight / (height * height);
+                displayResult(bmi);
+            } else {
+                alert('Por favor, insira valores válidos para peso e altura.');
+            }
+        }
+
+        function displayResult(bmi) {
+            var resultDiv = document.getElementById('result');
+            var message;
+
+            if (bmi < 18.5) {
+                message = 'Abaixo do peso';
+            } else if (bmi >= 18.5 && bmi < 24.9) {
+                message = 'Peso ideal';
+            } else {
+                message = 'Acima do peso';
+            }
+
+            resultDiv.innerHTML = 'Seu IMC é: ' + bmi.toFixed(2) + '<br>' + 'Classificação: ' + message;
+        }
+    </script>
+</body>
+</html>
